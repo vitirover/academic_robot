@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package telemetry;
+
+message GnssPosition {
+float lat = 1;
+float lng = 2;
+}
+
+
+message VitiroverTelemetry {
+uint32 robot_id = 1;
+GnssPosition position = 2;
+uint32 error_gnss_cm = 3;
+uint32 heading = 4;
+float battery_voltage = 5;
+//no commandCode
+MotorData front_left_wheel = 6;
+MotorData front_right_wheel = 7;
+MotorData back_right_wheel = 8;
+MotorData back_left_wheel = 9;
+
+MotorData left_mower = 10;
+MotorData right_mower = 11;
+
+float back_axle_angle = 12;
+//no goal point ?
+float sun_charge = 13;
+bool wifi_is_up = 14;
+float roll = 15 ;
+float pitch = 16;
+uint32 timestamp_seconds = 17;
+uint32 timestamp_milliseconds = 18;
+}
+
+message MotorData {
+int32 milli_amps = 1; // absolute milli amps
+int32 power = 2; // absolute milliwatts
+int32 back_electromotive_force = 3;
+}
+
+enum ControlMode {
+PID = 0;
+PWM = 1;
+}
+
+enum TurningMode {
+MAX_BACK_AXLE = 0; // BUT 1 in xdb's code
+STOP = 3;
+MANUAL = 4;
+}
+
+message VitiroverOrder {
+    oneof order_type {
+    VitiroverHighLevelOrder high_level_order = 1;
+    VitiroverLowLevelOrder low_level_order = 2;
+  }
+}
+
+message VitiroverHighLevelOrder {
+  ControlMode control_mode = 1;
+  int32 speed = 2;
+  float back_axle_angle = 3;
+  TurningMode turning_mode = 4;
+}
+
+message VitiroverLowLevelOrder {
+    ControlMode control_mode = 1;
+    int32 front_left_speed = 2;
+    int32 front_right_speed = 3;
+    int32 back_right_speed = 4;
+    int32 back_left_speed = 5;
+}
