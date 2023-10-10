@@ -12,27 +12,46 @@
 
 import socket
 import telemetry_pb2 as telemetry_pb2
+import random
+
+from google.protobuf.text_format import MessageToString
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(("192.168.42.2", 5005))
 sock.setblocking(0)
 
+
 while True:
+    high_order = telemetry_pb2.VitiroverHighLevelOrder()
+    high_order.speed = 50 + random.randint(0,50)
+    print(high_order.speed)
+    high_order.back_axle_angle = 0
+    high_order.turning_mode = telemetry_pb2.MANUAL
+
+    order = telemetry_pb2.VitiroverOrder()
+
+    order.high_level_order.CopyFrom(high_order)
+
+    data = order.SerializeToString()
+
+    sock.sendto(data, ("192.168.42.1", 5005))
+
+    
+
     try:
-        data, addr = sock.recvfrom(1024)  # Buffer size de 1024 octets
+        data, addr = sock.recvfrom(20000)  # Buffer size de 1024 octets
         telemetry_data = telemetry_pb2.VitiroverTelemetry()
         telemetry_data.ParseFromString(data)
 
         # Afficher quelques valeurs
-        print(f"Robot ID: {telemetry_data.robot_id}")
-        print(f"Error GNSS (cm): {telemetry_data.error_gnss_cm}")
-        print(f"Heading: {telemetry_data.heading}")
-        print(f"Battery Voltage: {telemetry_data.battery_voltage}")
+        print(MessageToString(telemetry_data))
 
+        print("timeout")
     except BlockingIOError:
-        # Pas de données reçues
-        pass
+        print("err")
     
+
+#    exit() 
 
 
 
