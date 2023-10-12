@@ -13,18 +13,19 @@
 import socket
 import telemetry_pb2 as telemetry_pb2
 import random
+import time
 
 from google.protobuf.text_format import MessageToString
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(("192.168.42.2", 5005))
+sock.bind(("192.168.1.109", 5005))
 sock.setblocking(0)
 
 
 while True:
     high_order = telemetry_pb2.VitiroverHighLevelOrder()
     high_order.speed = 50 + random.randint(0,50)
-    print(high_order.speed)
+    # print(high_order.speed)
     high_order.back_axle_angle = 0
     high_order.turning_mode = telemetry_pb2.MANUAL
 
@@ -34,22 +35,28 @@ while True:
 
     data = order.SerializeToString()
 
-    sock.sendto(data, ("192.168.42.1", 5005))
-
-    
-
     try:
-        data, addr = sock.recvfrom(20000)  # Buffer size de 1024 octets
-        telemetry_data = telemetry_pb2.VitiroverTelemetry()
-        telemetry_data.ParseFromString(data)
+        sock.sendto(data, ("192.168.1.42", 5005))
+    except BlockingIOError:
+        print("erreur on sendto")
+        pass
 
+    telemetry_data = None
+    while True:
+        try:
+            data, addr = sock.recvfrom(20000)  # Buffer size
+            telemetry_data = telemetry_pb2.VitiroverTelemetry()
+        except BlockingIOError:
+            # Plus de messages dans le buffer, sortir de la boucle
+            break
+    if telemetry_data != None:
+        telemetry_data.ParseFromString(data)
         # Afficher quelques valeurs
         print(MessageToString(telemetry_data))
 
-        print("timeout")
-    except BlockingIOError:
-        print("err")
-    
+
+    time.sleep(0.5)
+
 
 #    exit() 
 
