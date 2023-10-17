@@ -3,51 +3,60 @@ syntax = "proto3";
 package telemetry;
 
 message GnssPosition {
-float lat = 1;
-float lng = 2;
+  float lat = 1;
+  float lng = 2;
 }
 
 
 message VitiroverTelemetry {
-uint32 robot_id = 1;
-GnssPosition position = 2;
-uint32 error_gnss_cm = 3;
-uint32 heading = 4;
-float battery_voltage = 5;
-//no commandCode
-MotorData front_left_wheel = 6;
-MotorData front_right_wheel = 7;
-MotorData back_right_wheel = 8;
-MotorData back_left_wheel = 9;
+  uint32 robot_id = 1;
+  GnssPosition position = 2;
+  uint32 error_gnss_cm = 3;
+  uint32 heading = 4;
+  float battery_voltage = 5;
+  //no commandCode
+  MotorData front_left_wheel = 6;
+  MotorData front_right_wheel = 7;
+  MotorData back_right_wheel = 8;
+  MotorData back_left_wheel = 9;
 
-MotorData left_mower = 10;
-MotorData right_mower = 11;
+  MotorData left_mower = 10;
+  MotorData right_mower = 11;
 
-float back_axle_angle = 12;
-//no goal point ?
-float sun_charge = 13;
-bool wifi_is_up = 14;
-float roll = 15 ;
-float pitch = 16;
-uint32 timestamp_seconds = 17;
-uint32 timestamp_milliseconds = 18;
+  float back_axle_angle = 12;
+  //no goal point ?
+  float sun_charge = 13;
+  bool wifi_is_up = 14;
+  float roll = 15 ;
+  float pitch = 16;
+  uint32 timestamp_seconds = 17;
+  uint32 timestamp_milliseconds = 18;
+  float gyroscope_x = 19;         // Gyroscope reading along the X-axis (angular rate in rad/s or °/s).
+  float gyroscope_y = 20;         // Gyroscope reading along the Y-axis (angular rate in rad/s or °/s).
+  float gyroscope_z = 21;         // Gyroscope reading along the Z-axis (angular rate in rad/s or °/s).
+  float accelerometer_x = 22;     // Accelerometer reading along the X-axis (acceleration in m/s² or g).
+  float accelerometer_y = 23;     // Accelerometer reading along the Y-axis (acceleration in m/s² or g).
+  float accelerometer_z = 24;     // Accelerometer reading along the Z-axis (acceleration in m/s² or g).
+  float magnetometer_x = 25;      // Magnetometer reading along the X-axis (magnetic field strength in gauss or teslas).
+  float magnetometer_y = 26;      // Magnetometer reading along the Y-axis (magnetic field strength in gauss or teslas).
+  float magnetometer_z = 27;      // Magnetometer reading along the Z-axis (magnetic field strength in gauss or teslas).
 }
 
 message MotorData {
-int32 milli_amps = 1; // absolute milli amps
-int32 power = 2; // absolute milliwatts
-int32 back_electromotive_force = 3;
+  int32 milli_amps = 1; // absolute milli amps
+  int32 power = 2; // absolute milliwatts
+  int32 back_electromotive_force = 3;
 }
 
 enum ControlMode {
-PID = 0;
-PWM = 1;
+  PID = 0;
+  PWM = 1;
 }
 
 enum TurningMode {
-MAX_BACK_AXLE = 0; // BUT 1 in xdb's code
-STOP = 3;
-MANUAL = 4;
+  MAX_BACK_AXLE = 0; // BUT 1 in xdb's code
+  STOP = 3;
+  MANUAL = 4;
 }
 
 message VitiroverOrder {
