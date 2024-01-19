@@ -18,7 +18,7 @@ import time
 from google.protobuf.text_format import MessageToString
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(("192.168.1.109", 5005))
+sock.bind(("192.168.1.106", 5005))
 sock.setblocking(0)
 
 
