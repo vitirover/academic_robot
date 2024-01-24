@@ -78,7 +78,7 @@ We share URDF files, Gazebo integration and the mathematical model to control th
 
 ## Counter EMF to measure motor's rpm
 
-The agricultural standards require high robustness due to operation in chaotic terrain. To measure the RPM of the wheels, we have utilized Back Electromotive Force (BEMF), which provides accurate RPM measurements suitable for outdoor environments. For academic purposes, an encoder kit is available, offering even more precise RPM measurements. For more information about the encoder kit, please visit encoder kit.
+The agricultural standards require high robustness due to operation in chaotic terrain. To measure the RPM of the wheels, we have utilized Back Electromotive Force (BEMF), which provides accurate RPM measurements suitable for outdoor environments. For academic purposes, an encoder kit is available, offering even more precise RPM measurements. For more information about the encoder kit, please visit [encoder kit](/encoder_kit).
 
 # Contributing
 
