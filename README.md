@@ -65,7 +65,14 @@ In order to control the robot directly from you code, you will need the Jetson N
 See [the python basic example](/examples/basic-python-protobuf.py)
 
 
-# ROS integration
+# Getting started: Jetson Nano
+
+In the academic package you have a Jetson nano included. A Linux OS as well as some examples to use the robot are already pre-installed. 
+If you want more informations on how to install your own setup you can refer to : [Nvidia](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro)
+
+The password by default is "vitirover". Once you are logged in you can open Virtual Studio an navigate to academic_robot/examples. 
+
+# Getting started: ROS 
 
 ROS integration is currently only available for ROS1.
 Controls are sent to the robot the /cmd_vel topic to the robot thought our protobuf API.
@@ -75,6 +82,73 @@ We share the URDF and Gazebo integration to control the robot.
  [Readme Robot Model](model/README.md)
 
  [Readme ROS](ROS/README.md)
+
+To start controlling the robot using ROS, navigate to academic/examples modify the address of the robot according to your network in sock.bind(("your.ip.address", 5005)).
+Start command_ROS.py using the following commands:
+
+```
+cd academic/examples
+python command_ROS.py
+```
+
+In an other terminal:
+```
+roscore
+```
+
+In an other terminal:
+
+```
+rosrun teleop_twist_keyboard teleop_keyboard.py
+```
+
+# Getting started: Gazebo (WIP)
+
+To start the simulation on your PC with ROS noetic:
+
+```
+git clone vitirover_ws
+```
+Open a terminal and type
+
+```
+cd vitirover_ws
+source devel/setup.bash
+roslaunch mobile_robot gazebo_sim.launch
+```
+
+The simulation starts. You can try sending velocity command to the right rear wheel in an other terminal with:
+
+```
+rostopic pub  -1 /vitirover/right_rear_wheel_velocity_controller/command std_msgs/Float64 "data: 1.0"
+```
+
+# How to use the Jetson nano remotely
+## On Linux
+
+In your package you can find a fake HDMI. This dongle allows you to command your Jetson Nano from your PC through the wifi. 
+
+First, install tightvnc on your PC (do it once only):
+```
+sudo apt install xtightvncviewer
+```
+
+Then start the server (modify your.ip.address with your IP address):
+
+```
+xtightvncserver your.ip.address
+```
+or 
+```
+/usr/bin/xtightvncserver your.ip.address
+```
+
+Connect to the jetson nano:
+```
+xtightvncviewer your.ip.address -compresslevel 9 -quality 4
+```
+
+Type your password, and you are logged into the Jetson Nano ;)
 
 ## Counter EMF to measure motor's rpm
 
