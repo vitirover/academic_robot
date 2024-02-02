@@ -59,7 +59,7 @@ The trames definition with all fields is [here](protobuf/telemetry.proto)
 
 # Python example scripts
 
-In order to control the robot directly from you code, you wilforcesl need the Jetson Nano connected throught an USB/Ethernet adapter to our electronics JST ports.
+In order to control the robot directly from you code, you will need the Jetson Nano connected throught an USB/Ethernet adapter to our electronics JST ports.
 
 
 See [the python basic example](/examples/basic-python-protobuf.py)
@@ -68,9 +68,9 @@ See [the python basic example](/examples/basic-python-protobuf.py)
 # ROS integration
 
 ROS integration is currently only available for ROS1.
-Telemetry and control are sent from standard topics to the robot thought our protobuf API.
+Controls are sent to the robot the /cmd_vel topic to the robot thought our protobuf API.
 
-We share URDF files, Gazebo integration and the mathematical model to control the robot
+We share the URDF and Gazebo integration to control the robot.
 
  [Readme Robot Model](model/README.md)
 
@@ -82,6 +82,6 @@ The agricultural standards require high robustness due to operation in chaotic t
 
 # Contributing
 
-Please tell us via e-mail or issues if anything is missing from this repo or if you see any errors.
+We would be glade to hear from you contact us via e-mail or issues for any questions about this repo.
 
-The goal of this repository is to progressively enrich it with more examples of successful robot integrations. If you choose to share your work on the academic robot with other users, we could offer you some Saint-Emilion wine to thank you !
+This repository is constently evolving with new updates and more examples. Feel free to contribute to our community on the academic robot !
