@@ -117,7 +117,12 @@ source devel/setup.bash
 roslaunch mobile_robot gazebo_sim.launch
 ```
 
-The simulation starts. You can try sending velocity command to the right rear wheel in an other terminal with:
+The simulation starts in an empty world:
+
+
+![The Vitirover robot Gazebo](/img/Vitirovergazebo.png "Vitirover robot in Gazebo")
+
+You can try sending velocity command to the right rear wheel in an other terminal with:
 
 ```
 rostopic pub  -1 /vitirover/right_rear_wheel_velocity_controller/command std_msgs/Float64 "data: 1.0"
