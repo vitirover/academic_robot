@@ -82,6 +82,6 @@ The agricultural standards require high robustness due to operation in chaotic t
 
 # Contributing
 
-We would be glade to hear from you contact us via e-mail or issues for any questions about this repo.
+We would be glade to hear from you, you contact us via e-mail or issues for any questions about this repo.
 
 This repository is constently evolving with new updates and more examples. Feel free to contribute to our community on the academic robot !
