@@ -60,9 +60,6 @@ rospy.init_node('vitirover_simulation', anonymous=True)
 rospy.Subscriber("cmd_vel", Twist, cmd_vel_callback)
 axle_angle_pub = rospy.Publisher("back_axle_angle", std_msgs.msg.Float64, queue_size=10)
 
-# Path
-path = []
-
 # Main loop
 rate = rospy.Rate(10)
 running = True
