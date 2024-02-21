@@ -76,57 +76,15 @@ The password by default is "vitirover". Once you are logged in you can open Virt
 
 ROS integration is currently only available for ROS1.
 Controls are sent to the robot the /cmd_vel topic to the robot thought our protobuf API.
+We also provide integration with gazebo and our equations of motion of the robot.
 
-We share the URDF and Gazebo integration to control the robot.
+The specialized repository for vitirover ROS, which is directly structured as a ROS workspace, is here : 
 
- [Readme Robot Model](model/README.md)
-
- [Readme ROS](ROS/README.md)
-
-To start controlling the robot using ROS, navigate to academic/examples modify the address of the robot according to your network in sock.bind(("your.ip.address", 5005)).
-Start command_ROS.py using the following commands:
-
-```
-cd academic/examples
-python command_ROS.py
-```
-
-In an other terminal:
-```
-roscore
-```
-
-In an other terminal:
-
-```
-rosrun teleop_twist_keyboard teleop_keyboard.py
-```
-
-# Getting started: Gazebo (WIP)
-
-To start the simulation on your PC with ROS noetic:
-
-```
-git clone vitirover_ws
-```
-Open a terminal and type
-
-```
-cd vitirover_ws
-source devel/setup.bash
-roslaunch mobile_robot gazebo_sim.launch
-```
-
-The simulation starts in an empty world:
-
+![vitirover_ws](https://github.com/vitirover/vitirover_ws)
+There is also a more detailed ROS tutorial.
 
 ![The Vitirover robot Gazebo](/img/Vitirovergazebo.png "Vitirover robot in Gazebo")
 
-You can try sending velocity command to the right rear wheel in an other terminal with:
-
-```
-rostopic pub  -1 /vitirover/right_rear_wheel_velocity_controller/command std_msgs/Float64 "data: 1.0"
-```
 
 # How to use the Jetson nano remotely
 ## On Linux
