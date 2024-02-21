@@ -10,7 +10,7 @@
 
  - __Web Interface__: Intuitively control the robot through our [user-friendly web platform](https://cloud.vitirover.eu).
  - __Remote Scripting__: Use Scratch-like interface to program and execute remote scripts.
- - Advanced Mode: For the tech-savvy, dive into __Python__ coding or __ROS__ for granular control.
+ - __Advanced Mode__: For the tech-savvy, dive into __Python__ coding or __ROS__ for granular control.
 
 
 ## 🔧 What's inside
