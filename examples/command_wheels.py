@@ -64,7 +64,7 @@ def set_speed_from_key():
     print("wH: ", low_order.back_right_speed)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(("192.168.1.123", 5005))
+sock.bind(("192.168.1.123", 5005)) #Your IP Here
 sock.setblocking(0)
 
 low_order = telemetry_pb2.VitiroverLowLevelOrder()  # Initialize here for global accessibility
@@ -81,7 +81,7 @@ while True:
     order.low_level_order.CopyFrom(low_order)
 
     data = order.SerializeToString()
-    sock.sendto(data, ("192.168.1.42", 5005))
+    sock.sendto(data, ("192.168.2.42", 5005)) #Robot IP
     time.sleep(0.1)
     try:
         data, addr = sock.recvfrom(20000)
