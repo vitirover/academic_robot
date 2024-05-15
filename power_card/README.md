@@ -13,7 +13,7 @@ The power board features four terminal blocks, each providing a different maximu
 
 Additionally, links to the EAGLE files for the power board are provided. These files include all necessary schematics and board designs in EAGLE format, ideal for modification or further development.
 
-[![Power Card](img/power_card_photo.jpg)](img/power_card_photo.jpg)
+[![Power Card](../img/power_card_photo.jpg)](../img/power_card_photo.jpg)
 
 ### Safety Warning ⚠️
 
