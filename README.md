@@ -19,7 +19,7 @@
  
  - Charger
  
- - Alimentation card to add you own electronics, detectors or motors
+ - Alimentation card to add you own electronics, detectors or motors. More information [here](./power_card/).
 
  - Jetson Nano : to operate the robot directly with your code. You could use any board (raspberry, etc.), but documentation will be provided for Jetson 
 
@@ -32,9 +32,9 @@ Data Frames:
  
  - __Control Commands__: Send direct instructions for individual motor control.
 
-You can keep the two cameras connected to our electronis, or connect them to your board if you want to use Vision in you application.
+You can keep the two cameras connected to our electronics, or connect them to your board if you want to use Vision in you application.
 
-The trames definition with all fields is [here](protobuf/telemetry.proto)
+The trame definitions with all fields are [here](protobuf/telemetry.proto)
 
 
 
@@ -50,11 +50,11 @@ The trames definition with all fields is [here](protobuf/telemetry.proto)
 
  - In your robot page (click its name on the menu), you should be able to move the robot using the controller 🎮 icon on the map
 
-  - You can activate the robot live view from its camera using the camera icon on the map 👁️ 
+  - You can activate the robot live view from its camera using the camera icon on the map 👁️ (only if cameras are connected to the main board)
 
  - In the Scripts section, try out Scratch-like scripts. Use Control blocks to move the robot. Experiment, but ensure the robot is on the ground to prevent falls.⚠️
 
- - Please consult the Vitirover help section for using the standard robot functions ❓
+ - Please consult the Vitirover help section in our cloud for using the standard robot functions ❓
 
 
 # Python example scripts
@@ -70,12 +70,12 @@ See [the python basic example](/examples/basic-python-protobuf.py)
 In the academic package you have a Jetson nano included. A Linux OS as well as some examples to use the robot are already pre-installed. 
 If you want more informations on how to install your own setup you can refer to : [Nvidia](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro)
 
-The password by default is "vitirover". Once you are logged in you can open Virtual Studio an navigate to academic_robot/examples. 
+The password by default is "vitirover". Once you are logged in you can open Visual Studio Code and navigate to academic_robot/examples. 
 
 # Getting started: ROS 
 
 ROS integration is currently only available for ROS1.
-Controls are sent to the robot the /cmd_vel topic to the robot thought our protobuf API.
+Controls are sent to the robot the **/cmd_vel topic** to the robot thought our protobuf API.
 We also provide integration with gazebo and our equations of motion of the robot.
 
 The specialized repository for vitirover ROS, which is directly structured as a ROS workspace, is here : 
@@ -89,7 +89,7 @@ There is also a more detailed ROS tutorial.
 # How to use the Jetson nano remotely
 ## On Linux
 
-In your package you can find a fake HDMI. This dongle allows you to command your Jetson Nano from your PC through the wifi. 
+In your package you can find a fake HDMI. This dongle allows you to command your Jetson Nano from your PC through the wifi card (that we added to the standard Jetson Nano). 
 
 First, install tightvnc on your PC (do it once only):
 ```
@@ -119,6 +119,6 @@ The agricultural standards require high robustness due to operation in chaotic t
 
 # Contributing
 
-We would be glade to hear from you, you contact us via e-mail or issues for any questions about this repo.
+We would be glad to hear from you, you contact us via issues for any questions about this repo.
 
 This repository is constently evolving with new updates and more examples. Feel free to contribute to our community on the academic robot !
