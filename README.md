@@ -72,19 +72,6 @@ If you want more informations on how to install your own setup you can refer to 
 
 The password by default is "vitirover". Once you are logged in you can open Visual Studio Code and navigate to academic_robot/examples. 
 
-# Getting started: ROS 
-
-ROS integration is currently only available for ROS1.
-Controls are sent to the robot the **/cmd_vel topic** to the robot thought our protobuf API.
-We also provide integration with gazebo and our equations of motion of the robot.
-
-The specialized repository for vitirover ROS, which is directly structured as a ROS workspace, is here : 
-
-![vitirover_ws](https://github.com/vitirover/vitirover_ws)
-There is also a more detailed ROS tutorial.
-
-![The Vitirover robot Gazebo](/img/Vitirovergazebo.png "Vitirover robot in Gazebo")
-
 
 # How to use the Jetson nano remotely
 ## On Linux
