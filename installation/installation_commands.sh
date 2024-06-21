@@ -35,7 +35,13 @@ roscore
 
 # Changing the default wallpaper
 
-# Cloning this repository in /Desktop
+mkdir -p ~/Images && wget -O ~/Images/in_factory.webp https://raw.githubusercontent.com/vitirover/academic_robot/main/img/in_factory.webp && gsettings set org.gnome.desktop.background picture-uri "file:///home/$USER/Images/in_factory.webp"
+
+
+# Cloning this repository and ros repository in ~/Desktop
+
+mkdir -p ~/Desktop && git clone https://github.com/vitirover/academic_robot.git ~/Desktop/academic_robot && git clone https://github.com/vitirover/vitirover_ws.git ~/Desktop/vitirover_ws
+
 
 
 
