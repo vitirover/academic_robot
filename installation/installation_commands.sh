@@ -35,9 +35,7 @@ rosdep update
 roscore
 
 # Changing the default wallpaper
-
-mkdir -p ~/Images && wget -O ~/Images/in_factory.webp https://raw.githubusercontent.com/vitirover/academic_robot/main/img/in_factory.webp && gsettings set org.gnome.desktop.background picture-uri "file:///home/$USER/Images/in_factory.webp"
-
+mkdir -p ~/Images && wget -O ~/Images/in_factory.webp https://raw.githubusercontent.com/vitirover/academic_robot/main/img/in_factory.webp && dconf write /org/gnome/desktop/background/picture-uri "'file:///home/$USER/Images/in_factory.webp'"
 
 # Cloning this repository and ros repository in ~/Desktop
 
