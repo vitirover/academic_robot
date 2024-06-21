@@ -4,7 +4,8 @@ sudo apt-get install python3-pip -y
 sudo apt install software-properties-common apt-transport-https wget
 
 # Dowmload vs code for arm64 at https://github.com/headmelted/codebuilds/releases
-
+wget -O ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb https://github.com/headmelted/codebuilds/releases/download/30-Mar-20/code-oss_1.44.0-1585531075_arm64.deb
+cd ~/Downloads/
 sudo dpkg -i code-oss_1.44.0-1585531075_arm64.deb 
 sudo apt-get install -f
 code-oss
