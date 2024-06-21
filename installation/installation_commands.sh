@@ -1,6 +1,7 @@
-# Install VScode:
+# Install Python 3 (Jetson nano has 2.7 by default)
 sudo apt-get install python3-pip -y
 
+# Install VScode: (code-oss is open-source version)
 sudo apt install software-properties-common apt-transport-https wget
 
 # Dowmload vs code for arm64 at https://github.com/headmelted/codebuilds/releases
