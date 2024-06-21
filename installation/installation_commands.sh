@@ -35,13 +35,17 @@ rosdep update
 roscore
 
 # Changing the default wallpaper
-mkdir -p ~/Images && wget -O ~/Images/in_factory.webp https://raw.githubusercontent.com/vitirover/academic_robot/main/img/in_factory.webp && sudo apt-get install -y webp && dwebp ~/Images/in_factory.webp -o ~/Images/in_factory.jpg && dconf write /org/gnome/desktop/background/picture-uri "'file:///home/$USER/Images/in_factory.jpg'"
+# in "scaled" mode, in jpg (because webp is not supported), with background-color white
+mkdir -p ~/Images && wget -O ~/Images/in_factory.webp https://raw.githubusercontent.com/vitirover/academic_robot/main/img/in_factory.webp && sudo apt-get install -y webp && dwebp ~/Images/in_factory.webp -o ~/Images/in_factory.jpg && dconf write /org/gnome/desktop/background/picture-uri "'file:///home/$USER/Images/in_factory.jpg'" && dconf write /org/gnome/desktop/background/picture-options "'scaled'" && dconf write /org/gnome/desktop/background/primary-color "'#FFFFFF'"
 
 # Cloning this repository and ros repository in ~/Desktop
-
 mkdir -p ~/Desktop && git clone https://github.com/vitirover/academic_robot.git ~/Desktop/academic_robot && git clone https://github.com/vitirover/vitirover_ws.git ~/Desktop/vitirover_ws
 
+# Putting the readme of academic robot on the Desktop
+cp ~/Desktop/academic_robot/README.md ~/Desktop/README_vitirover.md
 
+# Installing protobuf, a version compatible with this Python, in order to have the basic-python-protobuf.py script working
+pip3 install protobuf==3.19.6
 
-
-
+# Installing pygame is not currently working, but this thread could help : 
+# https://forums.developer.nvidia.com/t/install-pygame-on-jetson-nano/83731/5
