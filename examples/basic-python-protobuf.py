@@ -21,7 +21,12 @@ import time
 from google.protobuf.text_format import MessageToString
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(("192.168.1.106", 5005))
+
+# to communicate with the robot throught ethernet, you must first set up your internet connection, for example 
+# sudo ifconfig enp56s0 up 192.168.2.106 netmask 255.255.255.0
+
+# sock.bind(("192.168.2.106", 5005))
+sock.bind(("YOUR IP HERE", 5005))
 sock.setblocking(0)
 
 
