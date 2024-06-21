@@ -10,6 +10,9 @@
 
 # protoc -I=protobuf/ --python_out=protobuf protobuf/telemetry.proto
 
+# Be careful to run this with "python3 basic-python-protobuf.py" and not "python" on the Jetson Nano, which still uses
+# python 2.7 :-/
+
 import socket
 import telemetry_pb2 as telemetry_pb2
 import random
