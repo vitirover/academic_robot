@@ -70,7 +70,7 @@ See [the python basic example](/examples/basic-python-protobuf.py)
 In the academic package you have a Jetson nano included. A Linux OS as well as some examples to use the robot are already pre-installed. 
 If you want more informations on how to install your own setup you can refer to : [Nvidia](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro)
 
-The password by default is "vitirover". Once you are logged in you can open Visual Studio Code and navigate to academic_robot/examples. 
+The password by default is "vitirover". Once you are logged in you can open Visual Studio Code (exactly : code-oss, the full open-source version) and navigate to academic_robot/examples. 
 
 
 # How to use the Jetson nano remotely
