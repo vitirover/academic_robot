@@ -20,11 +20,17 @@ RED = (255, 0, 0)  # Color for the trajectory
 
 # Screen setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Vitirover Robot Simulation")
+pygame.display.set_caption("Vitirover Robot Control")
 
 # Function to set speed based on pressed key
 def set_speed_from_key():
     global low_order  # Declare low_order as global to modify it
+
+    #angle_in_degrees = telemetry_data.back_axle_angle
+
+    # Conversion de degrés en radians
+    #angle_value = angle_in_degrees * (math.pi / 180)
+    #print("angle value: ", angle_value)
 
     keys = pygame.key.get_pressed()
     v = 0
@@ -48,6 +54,7 @@ def set_speed_from_key():
     r = 0.088  # Wheel radius (m)
     x = 0.400
     R = x/(math.tan(omega*dt)+0.0001)
+    #R = x/(math.tan(angle_value*dt)+0.0001)
 
     wI = (v/r) + omega * e/(2*r)
     wJ = (v/r) - omega * e/(2*r)
