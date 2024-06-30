@@ -35,6 +35,9 @@ rosdep update
 # Verify the ROS Environment:
 roscore
 
+# install teleop-twist-keyboard
+sudo apt-get install ros-melodic-teleop-twist-keyboard
+
 # Changing the default wallpaper
 # in "scaled" mode, in jpg (because webp is not supported), with background-color white
 mkdir -p ~/Images && wget -O ~/Images/in_factory.webp https://raw.githubusercontent.com/vitirover/academic_robot/main/img/in_factory.webp && sudo apt-get install -y webp && dwebp ~/Images/in_factory.webp -o ~/Images/in_factory.jpg && dconf write /org/gnome/desktop/background/picture-uri "'file:///home/$USER/Images/in_factory.jpg'" && dconf write /org/gnome/desktop/background/picture-options "'scaled'" && dconf write /org/gnome/desktop/background/primary-color "'#FFFFFF'"
