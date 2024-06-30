@@ -31,12 +31,17 @@ Test de deux caméras connectées à la Jetson :
 
 
 Test de l'envoi de commandes avec ROS : 
- - ...
-
+ - ouvrir un terminal et simplement taper *roscore* (pour lancer le serveur principal ROS)
+ - sur un autre terminal, lancer le lien vitirover/ros avec :
+   - *cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup*
+   - *python3 command_ROS.py*
+ - sur un troisième terminal, lancer *rosrun teleop_twist_keyboard teleop_twist_keyboard.py*
+ - utiliser la touche "__i__" minuscule par exemple pour faire avancer le robot, et "__,__" pour le faire reculer
+ - Tapez __Ctrl+C__ pour quitter ce terminal
 
 Fin du test : 
- - Reprendre le dongle de la souris
- - Déconnecter l'écran, remettre 
+ - Reprendre le dongle de la souris et déconnecter le clavier
+ - Déconnecter l'écran, remettre le hub HDMI
 
 
 English Translation 🇬🇧🇬🇧🇬🇧🇬🇧
@@ -73,7 +78,17 @@ Test for Two Cameras Connected to the Jetson:
 
 
 Test for Sending Commands with ROS:
- - ...
+
+ - Open a terminal and simply type roscore (to start the main ROS server)
+ - In another terminal, start the vitirover/ros link with:
+ - cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup
+ - python3 command_ROS.py
+ - In a third terminal, run rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+ - Use the "i" key in lowercase, for example, to move the robot forward, and "," to move it backward
+ - Use __Ctrl+C__ to quit
+
+
+
 
 
 End of the Test:
