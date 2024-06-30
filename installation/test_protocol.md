@@ -19,6 +19,16 @@ Test de l'envoi de commandes par protobuf :
  - Puis faire "python3 basic-python-protobuf.py"
  - Vous devriez voir les roues bouger aléatoirement, et voir la télémétrie du robot défiler sur le terminal de la jetson
 
+Test de l'envoi de commandes avec ROS : 
+ - ouvrir un terminal et simplement taper *roscore* (pour lancer le serveur principal ROS)
+ - sur un autre terminal, lancer le lien vitirover/ros avec :
+   - *cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup*
+   - Si le fichier contient "YOUR IP HERE", remplacer par votre IP, "192.168.2.106", définie à l'étape précédente
+   - *python3 command_ROS.py*
+ - sur un troisième terminal, lancer *rosrun teleop_twist_keyboard teleop_twist_keyboard.py*
+ - utiliser la touche "__i__" minuscule par exemple pour faire avancer le robot, et "__,__" pour le faire reculer
+ - Tapez __Ctrl+C__ pour quitter ce terminal
+
 Test de deux caméras connectées à la Jetson : 
  - Taper "webcam" dans la recherche d'application Ubuntu (appuyer sur le bouton Windows pour l'ouvrir)
  - Ouvrir "Cheese Webcam Booth"
@@ -30,14 +40,6 @@ Test de deux caméras connectées à la Jetson :
  - Ok, fermer l'application
 
 
-Test de l'envoi de commandes avec ROS : 
- - ouvrir un terminal et simplement taper *roscore* (pour lancer le serveur principal ROS)
- - sur un autre terminal, lancer le lien vitirover/ros avec :
-   - *cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup*
-   - *python3 command_ROS.py*
- - sur un troisième terminal, lancer *rosrun teleop_twist_keyboard teleop_twist_keyboard.py*
- - utiliser la touche "__i__" minuscule par exemple pour faire avancer le robot, et "__,__" pour le faire reculer
- - Tapez __Ctrl+C__ pour quitter ce terminal
 
 Fin du test : 
  - Reprendre le dongle de la souris et déconnecter le clavier
