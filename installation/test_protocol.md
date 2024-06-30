@@ -1,6 +1,6 @@
 # En Français 🇫🇷🇫🇷🇫🇷🇫🇷
 
-Ce document décrit les tests qui sont réalisés avant l'expédition du robot académique au robot.
+Ce document décrit les tests qui sont réalisés avant l'expédition du robot académique. Les tests sur le robot lui-même ne sont pas décrit ici, ils ont été réalisés avant.
 
 Préparation du test :
  - S'assurer que le robot est allumé (connecté au cloud, ou réseau wifi émis)
