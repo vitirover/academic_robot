@@ -50,6 +50,7 @@ cp ~/Desktop/academic_robot/README.md ~/Desktop/README_vitirover.md
 
 # Installing protobuf, a version compatible with this Python, in order to have the basic-python-protobuf.py script working
 pip3 install protobuf==3.19.6
+pip3 install rospkg
 
 # Installing pygame is not currently working, but this thread could help : 
 # https://forums.developer.nvidia.com/t/install-pygame-on-jetson-nano/83731/5
