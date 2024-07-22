@@ -8,6 +8,13 @@ Ils sont quasiment identiques, parce que le C100 est une copie du développeur k
 Pour utiliser la C100 au lieu du kit officiel, il a fallu installer la distribution de Okdo sur la carte SD au lieu de celle de Nvidia (à cause de ce changement sur le connecteur SD) : https://github.com/LetsOKdo/c100-bootupd
 
 
+Pour installer la carte, voici la procédure sans "dd" : 
+Avec balena etcher, verser sur une carte SD la distribution officielle jetson nano de nvidia, ou bien celle de okdo plus haut.
+Booter, accepter les conditions d'utilisation, définir utilisateur et mot de passe à "vitirover" avec "require my password to log in".
+Laisser le clavier en français le temps de setup, on mettra en anglais après (ou pas) ou selon le client final.
+Entrez les commandes de installation/installation_commands.sh
+
+
 Ce document décrit les tests qui sont réalisés avant l'expédition du robot académique. Les tests sur le robot lui-même ne sont pas décrit ici, ils ont été réalisés avant.
 
 Préparation du test :
