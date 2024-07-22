@@ -1,4 +1,5 @@
 # Install Python 3 (Jetson nano has 2.7 by default)
+sudo apt-get update
 sudo apt-get install python3-pip -y
 
 # Install VScode: (code-oss is open-source version)
