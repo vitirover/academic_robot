@@ -1,5 +1,13 @@
 # En Français 🇫🇷🇫🇷🇫🇷🇫🇷
 
+Pour la Jetson Nano, il y a deux versions très légerement différentes possibles : 
+ - le Developper Kit officiel de Nvidia
+ - La version "C100" de Okdo. Les connecteurs sur la carte porteuse sont colorés.
+
+Ils sont quasiment identiques, parce que le C100 est une copie du développeur kit officiel qui offre les mêmes fonctionnalités. Le connecteur de carte SD est simplement décalé de la carte du haut (la jetson elle-même) à la carte porteuse.
+Pour utiliser la C100 au lieu du kit officiel, il a fallu installer la distribution de Okdo sur la carte SD au lieu de celle de Nvidia (à cause de ce changement sur le connecteur SD) : https://github.com/LetsOKdo/c100-bootupd
+
+
 Ce document décrit les tests qui sont réalisés avant l'expédition du robot académique. Les tests sur le robot lui-même ne sont pas décrit ici, ils ont été réalisés avant.
 
 Préparation du test :
