@@ -1,7 +1,7 @@
 # En Français 🇫🇷🇫🇷🇫🇷🇫🇷
 
 Pour la Jetson Nano, il y a deux versions très légerement différentes possibles : 
- - le Developper Kit officiel de Nvidia
+ - le Developper Kit officiel de Nvidia (référence P3450)
  - La version "C100" de Okdo. Les connecteurs sur la carte porteuse sont colorés.
 
 Ils sont quasiment identiques, parce que le C100 est une copie du développeur kit officiel qui offre les mêmes fonctionnalités. Le connecteur de carte SD est simplement décalé de la carte du haut (la jetson elle-même) à la carte porteuse.
@@ -12,7 +12,9 @@ Pour installer la carte, voici la procédure sans "dd" :
 Avec balena etcher, verser sur une carte SD la distribution officielle jetson nano de nvidia, ou bien celle de okdo plus haut.
 Booter, accepter les conditions d'utilisation, définir utilisateur et mot de passe à "vitirover" avec "require my password to log in".
 Laisser le clavier en français le temps de setup, on mettra en anglais après (ou pas) ou selon le client final.
-Entrez les commandes de installation/installation_commands.sh
+
+
+Entrez les commandes de [installation/installation_commands.sh](installation_commands.sh) dans la jetson nano
 
 
 Ce document décrit les tests qui sont réalisés avant l'expédition du robot académique. Les tests sur le robot lui-même ne sont pas décrit ici, ils ont été réalisés avant.
