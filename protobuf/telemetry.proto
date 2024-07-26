@@ -43,9 +43,11 @@ message VitiroverTelemetry {
 }
 
 message MotorData {
-  int32 milli_amps = 1; // absolute milli amps
-  int32 power = 2; // absolute milliwatts
-  int32 back_electromotive_force = 3;
+  int32 milli_amps = 1; // absolute milli amps. This is noisy at low speed
+  int32 power = 2; // absolute milliwatts. This is noisy at low speed
+  int32 back_electromotive_force = 3; // A small fraction of the time, the motor is used as a generator to measure its voltage, providing an indication of the motor's rotation speed. -800 to 800
+  int32 rotation_per_minute = 4; //only for wheels. from - 70 to 70
+  int32 meter_per_hour = 5; //only for wheels. from -2000 to 2000, depending on the motor and the weel
 }
 
 enum ControlMode {
@@ -63,6 +65,7 @@ message VitiroverOrder {
     oneof order_type {
     VitiroverHighLevelOrder high_level_order = 1;
     VitiroverLowLevelOrder low_level_order = 2;
+    VitiroverMowerOrder mower_order = 3;
   }
 }
 
@@ -74,9 +77,20 @@ message VitiroverHighLevelOrder {
 }
 
 message VitiroverLowLevelOrder {
-    ControlMode control_mode = 1;
-    int32 front_left_speed = 2;
-    int32 front_right_speed = 3;
-    int32 back_right_speed = 4;
-    int32 back_left_speed = 5;
+  ControlMode control_mode = 1;
+  int32 front_left_speed = 2;
+  int32 front_right_speed = 3;
+  int32 back_right_speed = 4;
+  int32 back_left_speed = 5;
+}
+
+// IMPORTANT SAFETY WARNING
+// OPERATING MOWERS CAN BE EXTREMELY DANGEROUS
+// BEFORE WORKING WITH STUDENTS, ENSURE THE ROBOT IS TURNED OFF AND REMOVE EACH MOWER BLADE
+// VITIROVER DISCLAIMS ALL LIABILITY FOR ANY INJURIES RESULTING FROM THE USE OF MOWERS
+
+message VitiroverMowerOrder {
+  ControlMode control_mode = 1;
+  int32 right_mower_speed = 2;
+  int32 left_mower_speed = 3;
 }
