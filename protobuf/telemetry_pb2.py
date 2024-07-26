@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0ftelemetry.proto\x12\ttelemetry\"(\n\x0cGnssPosition\x12\x0b\n\x03lat\x18\x01 \x01(\x02\x12\x0b\n\x03lng\x18\x02 \x01(\x02\"\x92\x06\n\x12VitiroverTelemetry\x12\x10\n\x08robot_id\x18\x01 \x01(\r\x12)\n\x08position\x18\x02 \x01(\x0b\x32\x17.telemetry.GnssPosition\x12\x15\n\rerror_gnss_cm\x18\x03 \x01(\r\x12\x0f\n\x07heading\x18\x04 \x01(\r\x12\x17\n\x0f\x62\x61ttery_voltage\x18\x05 \x01(\x02\x12.\n\x10\x66ront_left_wheel\x18\x06 \x01(\x0b\x32\x14.telemetry.MotorData\x12/\n\x11\x66ront_right_wheel\x18\x07 \x01(\x0b\x32\x14.telemetry.MotorData\x12.\n\x10\x62\x61\x63k_right_wheel\x18\x08 \x01(\x0b\x32\x14.telemetry.MotorData\x12-\n\x0f\x62\x61\x63k_left_wheel\x18\t \x01(\x0b\x32\x14.telemetry.MotorData\x12(\n\nleft_mower\x18\n \x01(\x0b\x32\x14.telemetry.MotorData\x12)\n\x0bright_mower\x18\x0b \x01(\x0b\x32\x14.telemetry.MotorData\x12\x17\n\x0f\x62\x61\x63k_axle_angle\x18\x0c \x01(\x02\x12\x12\n\nsun_charge\x18\r \x01(\x02\x12\x12\n\nwifi_is_up\x18\x0e \x01(\x08\x12\x0c\n\x04roll\x18\x0f \x01(\x02\x12\r\n\x05pitch\x18\x10 \x01(\x02\x12\x19\n\x11timestamp_seconds\x18\x11 \x01(\r\x12\x1e\n\x16timestamp_milliseconds\x18\x12 \x01(\r\x12\x13\n\x0bgyroscope_x\x18\x13 \x01(\x02\x12\x13\n\x0bgyroscope_y\x18\x14 \x01(\x02\x12\x13\n\x0bgyroscope_z\x18\x15 \x01(\x02\x12\x17\n\x0f\x61\x63\x63\x65lerometer_x\x18\x16 \x01(\x02\x12\x17\n\x0f\x61\x63\x63\x65lerometer_y\x18\x17 \x01(\x02\x12\x17\n\x0f\x61\x63\x63\x65lerometer_z\x18\x18 \x01(\x02\x12\x16\n\x0emagnetometer_x\x18\x19 \x01(\x02\x12\x16\n\x0emagnetometer_y\x18\x1a \x01(\x02\x12\x16\n\x0emagnetometer_z\x18\x1b \x01(\x02\"\x85\x01\n\tMotorData\x12\x12\n\nmilli_amps\x18\x01 \x01(\x05\x12\r\n\x05power\x18\x02 \x01(\x05\x12 \n\x18\x62\x61\x63k_electromotive_force\x18\x03 \x01(\x05\x12\x1b\n\x13rotation_per_minute\x18\x04 \x01(\x05\x12\x16\n\x0emeter_per_hour\x18\x05 \x01(\x05\"\xd3\x01\n\x0eVitiroverOrder\x12>\n\x10high_level_order\x18\x01 \x01(\x0b\x32\".telemetry.VitiroverHighLevelOrderH\x00\x12<\n\x0flow_level_order\x18\x02 \x01(\x0b\x32!.telemetry.VitiroverLowLevelOrderH\x00\x12\x35\n\x0bmower_order\x18\x03 \x01(\x0b\x32\x1e.telemetry.VitiroverMowerOrderH\x00\x42\x0c\n\norder_type\"\x9d\x01\n\x17VitiroverHighLevelOrder\x12,\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x16.telemetry.ControlMode\x12\r\n\x05speed\x18\x02 \x01(\x05\x12\x17\n\x0f\x62\x61\x63k_axle_angle\x18\x03 \x01(\x02\x12,\n\x0cturning_mode\x18\x04 \x01(\x0e\x32\x16.telemetry.TurningMode\"\xae\x01\n\x16VitiroverLowLevelOrder\x12,\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x16.telemetry.ControlMode\x12\x18\n\x10\x66ront_left_speed\x18\x02 \x01(\x05\x12\x19\n\x11\x66ront_right_speed\x18\x03 \x01(\x05\x12\x18\n\x10\x62\x61\x63k_right_speed\x18\x04 \x01(\x05\x12\x17\n\x0f\x62\x61\x63k_left_speed\x18\x05 \x01(\x05\"x\n\x13VitiroverMowerOrder\x12,\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x16.telemetry.ControlMode\x12\x19\n\x11right_mower_speed\x18\x02 \x01(\x05\x12\x18\n\x10left_mower_speed\x18\x03 \x01(\x05*\x1f\n\x0b\x43ontrolMode\x12\x07\n\x03PID\x10\x00\x12\x07\n\x03PWM\x10\x01*6\n\x0bTurningMode\x12\x11\n\rMAX_BACK_AXLE\x10\x00\x12\x08\n\x04STOP\x10\x03\x12\n\n\x06MANUAL\x10\x04\x62\x06proto3'
+  serialized_pb=b'\n\x0ftelemetry.proto\x12\ttelemetry\"(\n\x0cGnssPosition\x12\x0b\n\x03lat\x18\x01 \x01(\x02\x12\x0b\n\x03lng\x18\x02 \x01(\x02\"\x92\x06\n\x12VitiroverTelemetry\x12\x10\n\x08robot_id\x18\x01 \x01(\r\x12)\n\x08position\x18\x02 \x01(\x0b\x32\x17.telemetry.GnssPosition\x12\x15\n\rerror_gnss_cm\x18\x03 \x01(\r\x12\x0f\n\x07heading\x18\x04 \x01(\r\x12\x17\n\x0f\x62\x61ttery_voltage\x18\x05 \x01(\x02\x12.\n\x10\x66ront_left_wheel\x18\x06 \x01(\x0b\x32\x14.telemetry.MotorData\x12/\n\x11\x66ront_right_wheel\x18\x07 \x01(\x0b\x32\x14.telemetry.MotorData\x12.\n\x10\x62\x61\x63k_right_wheel\x18\x08 \x01(\x0b\x32\x14.telemetry.MotorData\x12-\n\x0f\x62\x61\x63k_left_wheel\x18\t \x01(\x0b\x32\x14.telemetry.MotorData\x12(\n\nleft_mower\x18\n \x01(\x0b\x32\x14.telemetry.MotorData\x12)\n\x0bright_mower\x18\x0b \x01(\x0b\x32\x14.telemetry.MotorData\x12\x17\n\x0f\x62\x61\x63k_axle_angle\x18\x0c \x01(\x02\x12\x12\n\nsun_charge\x18\r \x01(\x02\x12\x12\n\nwifi_is_up\x18\x0e \x01(\x08\x12\x0c\n\x04roll\x18\x0f \x01(\x02\x12\r\n\x05pitch\x18\x10 \x01(\x02\x12\x19\n\x11timestamp_seconds\x18\x11 \x01(\r\x12\x1e\n\x16timestamp_milliseconds\x18\x12 \x01(\r\x12\x13\n\x0bgyroscope_x\x18\x13 \x01(\x02\x12\x13\n\x0bgyroscope_y\x18\x14 \x01(\x02\x12\x13\n\x0bgyroscope_z\x18\x15 \x01(\x02\x12\x17\n\x0f\x61\x63\x63\x65lerometer_x\x18\x16 \x01(\x02\x12\x17\n\x0f\x61\x63\x63\x65lerometer_y\x18\x17 \x01(\x02\x12\x17\n\x0f\x61\x63\x63\x65lerometer_z\x18\x18 \x01(\x02\x12\x16\n\x0emagnetometer_x\x18\x19 \x01(\x02\x12\x16\n\x0emagnetometer_y\x18\x1a \x01(\x02\x12\x16\n\x0emagnetometer_z\x18\x1b \x01(\x02\"\x87\x01\n\tMotorData\x12\x12\n\nmilli_amps\x18\x01 \x01(\x05\x12\r\n\x05power\x18\x02 \x01(\x05\x12 \n\x18\x62\x61\x63k_electromotive_force\x18\x03 \x01(\x05\x12\x1c\n\x14rotations_per_minute\x18\x04 \x01(\x05\x12\x17\n\x0fmeters_per_hour\x18\x05 \x01(\x05\"\xd3\x01\n\x0eVitiroverOrder\x12>\n\x10high_level_order\x18\x01 \x01(\x0b\x32\".telemetry.VitiroverHighLevelOrderH\x00\x12<\n\x0flow_level_order\x18\x02 \x01(\x0b\x32!.telemetry.VitiroverLowLevelOrderH\x00\x12\x35\n\x0bmower_order\x18\x03 \x01(\x0b\x32\x1e.telemetry.VitiroverMowerOrderH\x00\x42\x0c\n\norder_type\"\x9d\x01\n\x17VitiroverHighLevelOrder\x12,\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x16.telemetry.ControlMode\x12\r\n\x05speed\x18\x02 \x01(\x05\x12\x17\n\x0f\x62\x61\x63k_axle_angle\x18\x03 \x01(\x02\x12,\n\x0cturning_mode\x18\x04 \x01(\x0e\x32\x16.telemetry.TurningMode\"\xae\x01\n\x16VitiroverLowLevelOrder\x12,\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x16.telemetry.ControlMode\x12\x18\n\x10\x66ront_left_speed\x18\x02 \x01(\x05\x12\x19\n\x11\x66ront_right_speed\x18\x03 \x01(\x05\x12\x18\n\x10\x62\x61\x63k_right_speed\x18\x04 \x01(\x05\x12\x17\n\x0f\x62\x61\x63k_left_speed\x18\x05 \x01(\x05\"x\n\x13VitiroverMowerOrder\x12,\n\x0c\x63ontrol_mode\x18\x01 \x01(\x0e\x32\x16.telemetry.ControlMode\x12\x18\n\x10left_mower_speed\x18\x02 \x01(\x05\x12\x19\n\x11right_mower_speed\x18\x03 \x01(\x05*\x1f\n\x0b\x43ontrolMode\x12\x07\n\x03PID\x10\x00\x12\x07\n\x03PWM\x10\x01*6\n\x0bTurningMode\x12\x11\n\rMAX_BACK_AXLE\x10\x00\x12\x08\n\x04STOP\x10\x03\x12\n\n\x06MANUAL\x10\x04\x62\x06proto3'
 )
 
 _CONTROLMODE = _descriptor.EnumDescriptor(
@@ -43,8 +43,8 @@ _CONTROLMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1670,
-  serialized_end=1701,
+  serialized_start=1672,
+  serialized_end=1703,
 )
 _sym_db.RegisterEnumDescriptor(_CONTROLMODE)
 
@@ -74,8 +74,8 @@ _TURNINGMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1703,
-  serialized_end=1757,
+  serialized_start=1705,
+  serialized_end=1759,
 )
 _sym_db.RegisterEnumDescriptor(_TURNINGMODE)
 
@@ -371,14 +371,14 @@ _MOTORDATA = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='rotation_per_minute', full_name='telemetry.MotorData.rotation_per_minute', index=3,
+      name='rotations_per_minute', full_name='telemetry.MotorData.rotations_per_minute', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='meter_per_hour', full_name='telemetry.MotorData.meter_per_hour', index=4,
+      name='meters_per_hour', full_name='telemetry.MotorData.meters_per_hour', index=4,
       number=5, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -397,7 +397,7 @@ _MOTORDATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=862,
-  serialized_end=995,
+  serialized_end=997,
 )
 
 
@@ -447,8 +447,8 @@ _VITIROVERORDER = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=998,
-  serialized_end=1209,
+  serialized_start=1000,
+  serialized_end=1211,
 )
 
 
@@ -500,8 +500,8 @@ _VITIROVERHIGHLEVELORDER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1212,
-  serialized_end=1369,
+  serialized_start=1214,
+  serialized_end=1371,
 )
 
 
@@ -560,8 +560,8 @@ _VITIROVERLOWLEVELORDER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1372,
-  serialized_end=1546,
+  serialized_start=1374,
+  serialized_end=1548,
 )
 
 
@@ -581,14 +581,14 @@ _VITIROVERMOWERORDER = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='right_mower_speed', full_name='telemetry.VitiroverMowerOrder.right_mower_speed', index=1,
+      name='left_mower_speed', full_name='telemetry.VitiroverMowerOrder.left_mower_speed', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='left_mower_speed', full_name='telemetry.VitiroverMowerOrder.left_mower_speed', index=2,
+      name='right_mower_speed', full_name='telemetry.VitiroverMowerOrder.right_mower_speed', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -606,8 +606,8 @@ _VITIROVERMOWERORDER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1548,
-  serialized_end=1668,
+  serialized_start=1550,
+  serialized_end=1670,
 )
 
 _VITIROVERTELEMETRY.fields_by_name['position'].message_type = _GNSSPOSITION

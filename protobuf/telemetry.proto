@@ -46,8 +46,8 @@ message MotorData {
   int32 milli_amps = 1; // absolute milli amps. This is noisy at low speed
   int32 power = 2; // absolute milliwatts. This is noisy at low speed
   int32 back_electromotive_force = 3; // A small fraction of the time, the motor is used as a generator to measure its voltage, providing an indication of the motor's rotation speed. -800 to 800
-  int32 rotation_per_minute = 4; //only for wheels. from - 70 to 70
-  int32 meter_per_hour = 5; //only for wheels. from -2000 to 2000, depending on the motor and the weel
+  int32 rotations_per_minute = 4; //only for wheels. from - 70 to 70
+  int32 meters_per_hour = 5; //only for wheels. from -2000 to 2000, depending on the motor and the weel
 }
 
 enum ControlMode {
@@ -91,6 +91,6 @@ message VitiroverLowLevelOrder {
 
 message VitiroverMowerOrder {
   ControlMode control_mode = 1;
-  int32 right_mower_speed = 2;
-  int32 left_mower_speed = 3;
+  int32 left_mower_speed = 2;
+  int32 right_mower_speed = 3;
 }
