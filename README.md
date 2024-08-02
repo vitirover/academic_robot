@@ -76,9 +76,11 @@ The password by default is "vitirover". Once you are logged in you can open Visu
 # How to use the Jetson nano remotely
 ## On Linux
 
-In your package you can find a fake HDMI. This dongle allows you to command your Jetson Nano from your PC through the wifi card (that we added to the standard Jetson Nano). 
+In your package you can find a fake HDMI. This dongle allows you to visualize your Jetson Nano from your PC through the wifi card (that we added to the standard Jetson Nano). 
 
-First, install tightvnc on your PC (do it once only):
+First, connect the Jetson Nano to your wifi. 
+
+Install tightvnc on your PC (do it once only):
 ```
 sudo apt install xtightvncviewer
 ```
