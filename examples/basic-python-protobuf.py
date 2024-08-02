@@ -25,8 +25,14 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # to communicate with the robot throught ethernet, you must first set up your internet connection, for example 
 # sudo ifconfig enp56s0 up 192.168.2.106 netmask 255.255.255.0
 
-# sock.bind(("192.168.2.106", 5005))
-sock.bind(("YOUR IP HERE", 5005))
+# On Windows 11: Settings => Network & Internet => Ethernet =>
+# IP assignment => Edit => Manual
+# 192.168.2.106,
+# Subnet mask: netmask 255.255.255.0
+
+
+# sock.bind(("YOUR IP HERE", 5005))
+sock.bind(("192.168.2.106", 5005))
 sock.setblocking(0)
 
 
@@ -38,13 +44,23 @@ while True:
     high_order.turning_mode = telemetry_pb2.MANUAL
 
     order = telemetry_pb2.VitiroverOrder()
-
     order.high_level_order.CopyFrom(high_order)
-
     data = order.SerializeToString()
+
+    # Be careful if you want to try mower order as it will start the mowers.
+    # Check that no object (or fingers) are next to them
+    # Vitirover denies all reponsability in case of injury
+    # mower_order = telemetry_pb2.VitiroverMowerOrder()
+    # mower_order.left_mower_speed = 50
+    # mower_order.right_mower_speed = 50
+    # mower_order.control_mode = telemetry_pb2.PWM
+    # mower_order_container = telemetry_pb2.VitiroverOrder()
+    # mower_order_container.mower_order.CopyFrom(mower_order)
+    # mower_data = mower_order_container.SerializeToString()
 
     try:
         sock.sendto(data, ("192.168.1.42", 5005))
+        # sock.sendto(mower_data, ("192.168.1.42", 5005))
     except BlockingIOError:
         print("erreur on sendto")
         pass
