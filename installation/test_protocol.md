@@ -10,9 +10,10 @@ Pour utiliser la C100 au lieu du kit officiel, il a fallu installer la distribut
 
 Pour installer la carte, voici la procédure sans "dd" : 
 Avec balena etcher, verser sur une carte SD la distribution officielle jetson nano de nvidia, ou bien celle de okdo plus haut.
-Booter, accepter les conditions d'utilisation, définir utilisateur et mot de passe à "vitirover" avec "require my password to log in".
+Booter, accepter les conditions d'utilisation, définir utilisateur et mot de passe à "vitirover" sans "require my password to log in" (un client préferait avoir le log in automatique).
 Laisser le clavier en français le temps de setup, on mettra en anglais après (ou pas) ou selon le client final.
 
+J'ai (mathieu) essayé de flasher directement une image copiée sur une nouvelle carte C100, et ça échoue au démarrage, sûrement parce que l'OS copié (via dd puis balena etcher) considère que le changement de uboot est déjà fait, alors que sur la nouvelle carte ce n'est pas le cas. Pour le moment, il faut donc taper les commandes d'installation à la main. Un script en wget arrivera bientôt.
 
 Entrez les commandes de [installation/installation_commands.sh](installation_commands.sh) dans la jetson nano
 
@@ -31,18 +32,21 @@ Préparation du test :
 
 
 Test de l'envoi de commandes par protobuf : 
- - Sur le Jetson, dans un terminal, taper "sudo ifconfig eth0 up 192.168.2.106 netmask 255.255.255.0"
- - cd Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup
- - Puis faire "python3 basic-python-protobuf.py"
+ - Sur le Jetson, dans un terminal, taper __sudo ifconfig eth0 up 192.168.2.106 netmask 255.255.255.0__
+ - __cd Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup__
+ - Puis faire __python3 basic-python-protobuf.py__
  - Vous devriez voir les roues bouger aléatoirement, et voir la télémétrie du robot défiler sur le terminal de la jetson
 
 Test de l'envoi de commandes avec ROS : 
  - ouvrir un terminal et simplement taper *roscore* (pour lancer le serveur principal ROS)
  - sur un autre terminal, lancer le lien vitirover/ros avec :
-   - *cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup*
-   - Si le fichier command_ROS.py contient "YOUR IP HERE", remplacer par votre IP, "192.168.2.106", définie à l'étape précédente
-   - *python3 command_ROS.py*
- - sur un troisième terminal, lancer *rosrun teleop_twist_keyboard teleop_twist_keyboard.py*
+   - __cd ~/Desktop/vitirover_ws/__
+   - __catkin_make__
+   - __source devel/setup.bash__
+   - __cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup__
+   - Si le fichier *command_ROS.py* contient "YOUR IP HERE", remplacer par votre IP, "192.168.2.106", définie à l'étape précédente
+   - __python3 command_ROS.py__
+ - sur un troisième terminal, lancer __rosrun teleop_twist_keyboard teleop_twist_keyboard.py__
  - utiliser la touche "__i__" minuscule par exemple pour faire avancer le robot, et "__,__" pour le faire reculer
  - Tapez __Ctrl+C__ pour quitter ce terminal
 
@@ -63,7 +67,8 @@ Fin du test :
  - Déconnecter l'écran, remettre le hub HDMI
 
 
-English Translation 🇬🇧🇬🇧🇬🇧🇬🇧
+# English Translation 🇬🇧🇬🇧🇬🇧🇬🇧
+
 This document describes the tests conducted before shipping the academic robot to the robot.
 
 Test Preparation:
@@ -100,6 +105,9 @@ Test for Sending Commands with ROS:
 
  - Open a terminal and simply type roscore (to start the main ROS server)
  - In another terminal, start the vitirover/ros link with:
+ - __cd ~/Desktop/vitirover_ws/__
+ - __catkin_make__
+ - __source devel/setup.bash__
  - *cd ~/Desktop/vitirover_ws/src/mobile_robot/vitirover_bringup*
  - If the file *command_ROS.py* contains "YOUR IP HERE", replace it with your IP, "192.168.2.106", defined in the previous step
  - *python3 command_ROS.py*
