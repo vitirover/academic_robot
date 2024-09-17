@@ -20,18 +20,18 @@ sudo apt-get install -y python3-pip
 echo "Installing prerequisites for VS Code..."
 sudo apt-get install -y software-properties-common apt-transport-https wget
 
-# Download the official VS Code for ARM64
-echo "Downloading VS Code for ARM64..."
-wget -O ~/Downloads/code_arm64.deb "https://update.code.visualstudio.com/latest/linux-deb-arm64/stable"
-
+# Dowmload vs code for arm64 at https://github.com/headmelted/codebuilds/releases
+# a problem in libc (used in jetson nano) does not allow us to install the official vscode
+echo "Downloading Code-OSS for ARM64..."
+wget -O ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb https://github.com/headmelted/codebuilds/releases/download/30-Mar-20/code-oss_1.44.0-1585531075_arm64.deb
 # Install VS Code
 echo "Installing VS Code..."
-sudo dpkg -i ~/Downloads/code_arm64.deb || true
+sudo dpkg -i ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb || true
 sudo apt-get install -f -y
 
 # Remove any problematic repositories (if they exist)
-echo "Removing invalid repositories..."
-sudo rm -f /etc/apt/sources.list.d/headmelted_codebuilds.list
+echo "Removing invalid repositories installed for code oss..."
+sudo rm -f /etc/apt/sources.list.d/headmelted_vscode.list
 sudo apt-get update -y
 
 # Install ROS
