@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -O installation_commands.sh https://raw.githubusercontent.com/vitirover/academic_robot/main/installation/installation_commands_auto.sh && chmod +x installation_commands_auto.sh && ./installation_commands_auto.sh
+# wget -O installation_commands_auto.sh https://raw.githubusercontent.com/vitirover/academic_robot/main/installation/installation_commands_auto.sh && chmod +x installation_commands_auto.sh && ./installation_commands_auto.sh
 set -e
 
 # Ensure the script is not run as root
