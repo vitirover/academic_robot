@@ -104,7 +104,7 @@ pip3 install --user rospkg
 
 # Build catkin workspace
 echo "Building catkin workspace..."
-cd ~/Desktop/academic_robot
+cd ~/Desktop/vitirover_ws
 catkin_make
 
 # Return to home directory
