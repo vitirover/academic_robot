@@ -16,8 +16,8 @@ sudo apt-get update -y
 echo "Installing Python 3 and pip..."
 sudo apt-get install -y python3-pip
 
-# Install prerequisites for VS Code
-echo "Installing prerequisites for VS Code..."
+# Install prerequisites for Code-OSS
+echo "Installing prerequisites for Code-OSS..."
 sudo apt-get install -y software-properties-common apt-transport-https wget
 
 # Dowmload vs code for arm64 at https://github.com/headmelted/codebuilds/releases
@@ -25,10 +25,11 @@ sudo apt-get install -y software-properties-common apt-transport-https wget
 echo "Downloading Code-OSS for ARM64..."
 wget -O ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb https://github.com/headmelted/codebuilds/releases/download/30-Mar-20/code-oss_1.44.0-1585531075_arm64.deb
 # Install VS Code
-echo "Installing VS Code..."
+echo "Installing Code-OSS"
 sudo dpkg -i ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb || true
 sudo apt-get install -f -y
 
+# one wrong repo installed for code-oss makes sudo apt-get update fail, so we fix it first
 # Remove any problematic repositories (if they exist)
 echo "Removing invalid repositories installed for code oss..."
 sudo rm -f /etc/apt/sources.list.d/headmelted_vscode.list
