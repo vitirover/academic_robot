@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # wget -O installation_commands_auto.sh https://raw.githubusercontent.com/vitirover/academic_robot/main/installation/installation_commands_auto.sh && chmod +x installation_commands_auto.sh && sudo ./installation_commands_auto.sh
-
+#!/bin/bash
 set -e
 
 # Install Python 3 (Jetson Nano has 2.7 by default)
@@ -15,14 +15,19 @@ sudo apt-get install -y python3-pip
 echo "Installing prerequisites for VS Code..."
 sudo apt-get install -y software-properties-common apt-transport-https wget
 
-# Download VS Code for ARM64
+# Download the official VS Code for ARM64
 echo "Downloading VS Code for ARM64..."
-wget -O ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb "https://github.com/headmelted/codebuilds/releases/download/30-Mar-20/code-oss_1.44.0-1585531075_arm64.deb"
+wget -O ~/Downloads/code_arm64.deb "https://update.code.visualstudio.com/latest/linux-deb-arm64/stable"
 
 # Install VS Code
 echo "Installing VS Code..."
-sudo dpkg -i ~/Downloads/code-oss_1.44.0-1585531075_arm64.deb || true
+sudo dpkg -i ~/Downloads/code_arm64.deb || true
 sudo apt-get install -f -y
+
+# Remove any problematic repositories (if they exist)
+echo "Removing invalid repositories..."
+sudo rm -f /etc/apt/sources.list.d/headmelted_codebuilds.list
+sudo apt-get update -y
 
 # Install ROS
 echo "Adding ROS repository..."
@@ -97,4 +102,5 @@ echo "Building catkin workspace..."
 cd ~/Desktop/academic_robot
 catkin_make
 
-# Note: Pygame installation is not included as it's known to have issues on Jetson Nano
+# Return to home directory
+cd ~
