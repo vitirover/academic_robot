@@ -1,8 +1,13 @@
 #!/bin/bash
 
-# wget -O installation_commands_auto.sh https://raw.githubusercontent.com/vitirover/academic_robot/main/installation/installation_commands_auto.sh && chmod +x installation_commands_auto.sh && sudo ./installation_commands_auto.sh
-#!/bin/bash
+# wget -O installation_commands.sh https://raw.githubusercontent.com/vitirover/academic_robot/main/installation/installation_commands_auto.sh && chmod +x installation_commands_auto.sh && ./installation_commands_auto.sh
 set -e
+
+# Ensure the script is not run as root
+if [ "$EUID" -eq 0 ]; then
+  echo "Please do not run this script as root or with sudo."
+  exit 1
+fi
 
 # Install Python 3 (Jetson Nano has 2.7 by default)
 echo "Updating package lists..."
@@ -92,10 +97,10 @@ cp ~/Desktop/academic_robot/README.md ~/Desktop/README_vitirover.md
 
 # Install protobuf and rospkg
 echo "Installing protobuf..."
-pip3 install protobuf==3.19.6
+pip3 install --user protobuf==3.19.6
 
 echo "Installing rospkg..."
-pip3 install rospkg
+pip3 install --user rospkg
 
 # Build catkin workspace
 echo "Building catkin workspace..."
@@ -104,3 +109,5 @@ catkin_make
 
 # Return to home directory
 cd ~
+
+echo "Installation completed successfully."
