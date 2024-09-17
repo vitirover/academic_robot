@@ -119,4 +119,8 @@ catkin_make
 # Return to home directory
 cd ~
 
+# adding code-oss icon to the dock
+sudo cp /usr/share/code-oss/resources/app/resources/linux/code.png /usr/share/pixmaps/code-oss.png
+gsettings set com.canonical.Unity.Launcher favorites "$(gsettings get com.canonical.Unity.Launcher favorites | sed -e "s/]/, 'code-oss.desktop']/")"
+
 echo "Installation completed successfully."
