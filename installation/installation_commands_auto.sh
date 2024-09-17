@@ -67,6 +67,10 @@ rosdep update
 echo "Installing teleop-twist-keyboard..."
 sudo apt-get install -y ros-melodic-teleop-twist-keyboard
 
+# Add Environment Variables and Install ROS Dependencies
+echo "Reexecuting bashrc now that install is complete"
+source ~/.bashrc
+
 # Change the default wallpaper
 echo "Changing the default wallpaper..."
 mkdir -p ~/Images
@@ -101,6 +105,10 @@ pip3 install --user protobuf==3.19.6
 
 echo "Installing rospkg..."
 pip3 install --user rospkg
+
+# Add Environment Variables and Install ROS Dependencies
+echo "Reexecuting bashrc once again now that install is complete"
+source ~/.bashrc
 
 # Build catkin workspace
 echo "Building catkin workspace..."
