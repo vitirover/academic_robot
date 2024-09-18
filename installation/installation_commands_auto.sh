@@ -35,6 +35,11 @@ echo "Removing invalid repositories installed for code oss..."
 sudo rm -f /etc/apt/sources.list.d/headmelted_vscode.list
 sudo apt-get update -y
 
+# adding code-oss icon to the dock
+sudo cp /usr/share/code-oss/resources/app/resources/linux/code.png /usr/share/pixmaps/code-oss.png
+gsettings set com.canonical.Unity.Launcher favorites "$(gsettings get com.canonical.Unity.Launcher favorites | sed -e "s/]/, 'code-oss.desktop']/")"
+
+
 # Install ROS
 echo "Adding ROS repository..."
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -51,7 +56,17 @@ sudo apt-get install -y ros-melodic-desktop-full
 # Add Environment Variables and Install ROS Dependencies
 echo "Adding ROS environment variables to .bashrc..."
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+
+# source ~/.bashrc
+# sourcer le bashrc depuis un script non-interactif ne sert à rien !
+# en effet, ce bloc empêche tout, et le code ROS est rajouté tout à la fin... 
+# If not running interactively, don't do anything
+# case $- in
+#    *i*) ;;
+#      *) return;;
+# esac
+# solution sourcer le script ros directement
+source /opt/ros/melodic/setup.bash
 
 echo "Installing ROS dependencies..."
 sudo apt-get install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
@@ -67,10 +82,6 @@ rosdep update
 # Install teleop-twist-keyboard
 echo "Installing teleop-twist-keyboard..."
 sudo apt-get install -y ros-melodic-teleop-twist-keyboard
-
-# Add Environment Variables and Install ROS Dependencies
-echo "Reexecuting bashrc now that install is complete"
-source ~/.bashrc
 
 # Change the default wallpaper
 echo "Changing the default wallpaper..."
@@ -107,9 +118,10 @@ pip3 install --user protobuf==3.19.6
 echo "Installing rospkg..."
 pip3 install --user rospkg
 
-# Add Environment Variables and Install ROS Dependencies
-echo "Reexecuting bashrc once again now that install is complete"
-source ~/.bashrc
+echo "Reexecuting source /opt/ros/melodic/setup.bash now that install is complete"
+source /opt/ros/melodic/setup.bash
+# debug to know if catkin_make is available
+which catkin_make
 
 # Build catkin workspace
 echo "Building catkin workspace..."
@@ -119,8 +131,5 @@ catkin_make
 # Return to home directory
 cd ~
 
-# adding code-oss icon to the dock
-sudo cp /usr/share/code-oss/resources/app/resources/linux/code.png /usr/share/pixmaps/code-oss.png
-gsettings set com.canonical.Unity.Launcher favorites "$(gsettings get com.canonical.Unity.Launcher favorites | sed -e "s/]/, 'code-oss.desktop']/")"
 
 echo "Installation completed successfully."
