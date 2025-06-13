@@ -8,200 +8,97 @@ This guide will help you configure your Jetson Nano to automatically broadcast a
 - WiFi adapter/module installed and recognized by the system
 - Root access to the device
 
-## Installation
-
 ### 1. Install Required Packages
 
 ```bash
 sudo apt update
-sudo apt install hostapd dnsmasq
+sudo apt install hostapd
 ```
 
-### 2. Configure Access Point (hostapd)
+> **Note**: NetworkManager has built-in DHCP functionality, so dnsmasq is not required.
 
-Create the hostapd configuration file:
+### 2. Create the Hotspot Connection
+
+Use NetworkManager's command-line tool to create the hotspot:
 
 ```bash
-sudo nano /etc/hostapd/hostapd.conf
-```
-
-Add the following content:
-
-```
-interface=wlan0
-driver=nl80211
-ssid=Vitirover Jetson Nano
-hw_mode=g
-channel=7
-wmm_enabled=0
-macaddr_acl=0
-auth_algs=1
-ignore_broadcast_ssid=0
-wpa=2
-wpa_passphrase=YourPasswordHere
-wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP
-rsn_pairwise=CCMP
+sudo nmcli con add type wifi ifname wlan0 con-name "Vitirover-Hotspot" autoconnect yes ssid "Vitirover Jetson Nano"
+sudo nmcli con modify "Vitirover-Hotspot" 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
+sudo nmcli con modify "Vitirover-Hotspot" wifi-sec.key-mgmt wpa-psk
+sudo nmcli con modify "Vitirover-Hotspot" wifi-sec.psk "YourPasswordHere"
 ```
 
 > **Note**: Replace `YourPasswordHere` with a secure password (minimum 8 characters)
 
-### 3. Configure DHCP Server (dnsmasq)
+### 3. Set Static IP (Optional)
 
-Backup the original configuration:
-```bash
-sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-```
-
-Create new configuration:
-```bash
-sudo nano /etc/dnsmasq.conf
-```
-
-Add the following:
-```
-interface=wlan0
-dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
-```
-
-### 4. Configure Network Interface
-
-#### For systems using netplan (Ubuntu 18.04+):
+If you want a specific IP address:
 
 ```bash
-sudo nano /etc/netplan/01-network-manager-all.yaml
+sudo nmcli con modify "Vitirover-Hotspot" ipv4.addresses 192.168.4.1/24
 ```
 
-Add or modify:
-```yaml
-network:
-  version: 2
-  renderer: NetworkManager
-  wifis:
-    wlan0:
-      access-points: {}
-      addresses: [192.168.4.1/24]
-```
+### 4. Enable Auto-Connect
 
-#### For systems using dhcpcd:
+Make sure the connection starts automatically:
 
 ```bash
-sudo nano /etc/dhcpcd.conf
+sudo nmcli con modify "Vitirover-Hotspot" connection.autoconnect yes
+sudo nmcli con modify "Vitirover-Hotspot" connection.autoconnect-priority 999
 ```
 
-Add at the end:
-```
-interface wlan0
-static ip_address=192.168.4.1/24
-nohook wpa_supplicant
-```
-
-### 5. Configure Hostapd Daemon
-
-Tell hostapd where to find its configuration:
-```bash
-sudo nano /etc/default/hostapd
-```
-
-Uncomment and modify:
-```
-DAEMON_CONF="/etc/hostapd/hostapd.conf"
-```
-
-### 6. Enable IP Forwarding
+### 5. Activate the Hotspot
 
 ```bash
-sudo nano /etc/sysctl.conf
+sudo nmcli con up "Vitirover-Hotspot"
 ```
 
-Uncomment the following line:
-```
-net.ipv4.ip_forward=1
-```
-
-### 7. Configure Firewall (Optional)
-
-If you want to share internet connection through ethernet:
-
-```bash
-sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
-```
-
-Save the iptables rules:
-```bash
-sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
-```
-
-### 8. Enable Services
-
-```bash
-sudo systemctl unmask hostapd
-sudo systemctl enable hostapd
-sudo systemctl enable dnsmasq
-```
-
-### 9. Configure SSH Access
+### 6. Configure SSH Access
 
 Ensure SSH is enabled and will start at boot:
+
 ```bash
 sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
-### 10. Create Startup Script
+### 7. Create Persistent Service
 
-Create a script to ensure everything starts correctly:
+Create a service to ensure the hotspot starts at boot:
+
 ```bash
-sudo nano /etc/rc.local
+sudo nano /etc/systemd/system/wifi-hotspot.service
 ```
 
-Add the following before `exit 0`:
-```bash
-#!/bin/bash
+Add this content:
 
-# Restore iptables rules
-if [ -f /etc/iptables.ipv4.nat ]; then
-    iptables-restore < /etc/iptables.ipv4.nat
-fi
+```ini
+[Unit]
+Description=WiFi Hotspot
+After=NetworkManager.service
+Wants=NetworkManager.service
 
-# Ensure services are started
-systemctl start hostapd
-systemctl start dnsmasq
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/nmcli con up "Vitirover-Hotspot"
+ExecStop=/usr/bin/nmcli con down "Vitirover-Hotspot"
 
-exit 0
+[Install]
+WantedBy=multi-user.target
 ```
 
-Make the script executable:
+Enable the service:
+
 ```bash
-sudo chmod +x /etc/rc.local
+sudo systemctl enable wifi-hotspot.service
 ```
 
-### 11. Reboot and Test
+### 8. Reboot and Test
 
 ```bash
 sudo reboot
 ```
-
-## Usage
-
-After reboot, you should see the "Vitirover Jetson Nano" network available for connection.
-
-- **Network Name**: Vitirover Jetson Nano
-- **Password**: The password you set in step 2
-- **Jetson IP Address**: 192.168.4.1
-- **DHCP Range**: 192.168.4.2 - 192.168.4.20
-
-### SSH Access
-
-Once connected to the WiFi network, you can SSH into the Jetson Nano:
-
-```bash
-ssh username@192.168.4.1
-```
-
-Replace `username` with your actual username on the Jetson Nano.
 
 ## Troubleshooting
 
