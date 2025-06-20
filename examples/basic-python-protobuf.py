@@ -10,6 +10,9 @@
 
 # protoc -I=protobuf/ --python_out=protobuf protobuf/telemetry.proto
 
+# Be careful to run this with "python3 basic-python-protobuf.py" and not "python" on the Jetson Nano, which still uses
+# python 2.7 :-/
+
 import socket
 import telemetry_pb2 as telemetry_pb2
 import random
@@ -30,13 +33,23 @@ while True:
     high_order.turning_mode = telemetry_pb2.MANUAL
 
     order = telemetry_pb2.VitiroverOrder()
-
     order.high_level_order.CopyFrom(high_order)
-
     data = order.SerializeToString()
+
+    # Be careful if you want to try mower order as it will start the mowers.
+    # Check that no object (or fingers) are next to them
+    # Vitirover denies all reponsability in case of injury
+    # mower_order = telemetry_pb2.VitiroverMowerOrder()
+    # mower_order.left_mower_speed = 50
+    # mower_order.right_mower_speed = 50
+    # mower_order.control_mode = telemetry_pb2.PWM
+    # mower_order_container = telemetry_pb2.VitiroverOrder()
+    # mower_order_container.mower_order.CopyFrom(mower_order)
+    # mower_data = mower_order_container.SerializeToString()
 
     try:
         sock.sendto(data, ("192.168.1.42", 5005))
+        # sock.sendto(mower_data, ("192.168.1.42", 5005))
     except BlockingIOError:
         print("erreur on sendto")
         pass
