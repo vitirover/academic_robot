@@ -132,4 +132,5 @@ catkin_make
 cd ~
 
 
-echo "Installation completed successfully."
+echo "Installation completed successfully"
+echo "But wifi-manager not installed yet, please do and test it"

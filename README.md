@@ -62,31 +62,33 @@ The trame definitions with all fields are [here](protobuf/telemetry.proto)
 
 ### Using SSH and a local network
 
-The **VitiroverAP_[name of your robot]** network is intended for private use since is emitted by our non-academic motherboard.
+The **VitiroverAP_[name of your robot]** network is intended for private use since it is emitted by our non-academic motherboard.
 
-Starting at this commit, we include a **vitirover-wifi-manager** to help you getting remote access without the need to open the robot (see next section).
-The Jetson Nano, with the Wifi card we added, only supports one wifi connection at the time. But to be able to use this connection confortably, you will need to have an SSH connection and an internet access on the Jetson Nano.
+Starting at this commit, we include a **vitirover-wifi-manager** systemd service to help you getting remote access without the need to open the robot each time (see "direct access" section). When a wifi configuration is set up, it will be active even after a reboot.
+The Jetson Nano, with the Wifi card we added, only supports one wifi connection at the time. But to be able to use this connection confortably, you will need to have an SSH connection and an internet access on the Jetson Nano simultaneously.
 In order to accomplish this, the solution is to connect the Jetson Nano directly to your local wifi network, and get SSH access from your computer thought your local wifi network.
+
+#### If vitirover-wifi-manager is installed (robots produced since this commit)
 
 The "vitirover-wifi-manager" emits a hotspot network, **Vitirover-SSH**. Thought this network, you will configure the **local network** you want to use. Once this is done, you apply this configuration, SSH will cut, and you will be able to access SSH again thought your local-network.
 
-Here are the steps (once he vitirover-wifi-manager is installed, which will be the case for robots produced after this commit) :
-
 - Start the robot and the Jetson Nano
-- Connect to the "Vitirover-SSH" network. Password is "vitirover"
+- Connect to the **Vitirover-SSH** network. Password is **vitirover**
 - use putty (on windows) or ssh on "vitirover@10.42.0.1" (port 22).
 - cd ~/Desktop/academic_robot/
 - sudo ./wifi_config_tools config
 - follow instructions to configure your local wifi network to connect to (using a static ip address)
 - reboot, the robot should be connected to your local wifi network using the IP adress you provided
 - connect to the robot thought you local network with SSH (user and password are vitirover, port 22). Now you should have both a working SSH connection, AND access to internet (ping 8.8.8.8 to check)
-- see python examples or ros repository to begin
+- see python examples or ros repository (or installation folder where there are some examples) to begin
 
 #### If vitirover-wifi-manager is not installed yet
 You will have to use get direct access to the jetson nano (see next section), then : 
  - cd ~/Desktop/academic_robot/
- - git pull
+ - git pull (or "git switch wifi-manager" if not merged yet)
  - cd vitirover-wifi-manager
+ - chmod +x wifi_config_tools
+ - chmod +x vitirover-wifi-manager
  - sudo ./wifi_config_tools install
  - sudo ./wifi_config_tools config
  - follow instructions to configure your local wifi network to connect to (using a static ip address)
@@ -104,6 +106,10 @@ If you struggle with the setup of the SSH connection and remote access, you can 
  - Log in : The default user and password is __vitirover__.****
  - This repository, and the [ROS repository](https://github.com/vitirover/vitirover_ws) are already present. If they are not up to date, you can do a **git pull** on them. 
  - In order to start, you can for example test python example scripts in examples, or head directly into the[ROS repository](https://github.com/vitirover/vitirover_ws)
+
+### Network Schema
+**Coming soon**
+
 
 # Python example scripts
 

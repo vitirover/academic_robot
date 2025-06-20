@@ -55,3 +55,14 @@ pip3 install rospkg
 
 # Installing pygame is not currently working, but this thread could help : 
 # https://forums.developer.nvidia.com/t/install-pygame-on-jetson-nano/83731/5
+
+
+# wifi-manager install :
+
+cd vitirover-wifi-manager
+chmod +x wifi_config_tools
+chmod +x vitirover-wifi-manager
+sudo ./wifi_config_tools install
+sudo ./wifi_config_tools config
+
+# then check if "VitiroverSSH" is up at reboot and allows changing the settings
