@@ -70,7 +70,29 @@ In order to accomplish this, the solution is to connect the Jetson Nano directly
 
 The "vitirover-wifi-manager" emits a hotspot network, **Vitirover-SSH**. Thought this network, you will configure the **local network** you want to use. Once this is done, you apply this configuration, SSH will cut, and you will be able to access SSH again thought your local-network.
 
-Here are the steps
+Here are the steps (once he vitirover-wifi-manager is installed, which will be the case for robots produced after this commit) :
+
+- Start the robot and the Jetson Nano
+- Connect to the "Vitirover-SSH" network. Password is "vitirover"
+- use putty (on windows) or ssh on "vitirover@10.42.0.1" (port 22).
+- cd ~/Desktop/academic_robot/
+- sudo ./wifi_config_tools config
+- follow instructions to configure your local wifi network to connect to (using a static ip address)
+- reboot, the robot should be connected to your local wifi network using the IP adress you provided
+- connect to the robot thought you local network with SSH (user and password are vitirover, port 22). Now you should have both a working SSH connection, AND access to internet (ping 8.8.8.8 to check)
+- see python examples or ros repository to begin
+
+#### If vitirover-wifi-manager is not installed yet
+You will have to use get direct access to the jetson nano (see next section), then : 
+ - cd ~/Desktop/academic_robot/
+ - git pull
+ - cd vitirover-wifi-manager
+ - sudo ./wifi_config_tools install
+ - sudo ./wifi_config_tools config
+ - follow instructions to configure your local wifi network to connect to (using a static ip address)
+ - reboot, the robot should be connected to your local wifi network
+ - connect to the robot thought you local network with SSH (user and password are vitirover, port 22). Now you should have both SSH connection, AND access to internet (ping 8.8.8.8 to check)
+- see python examples or ros repository to begin
 
 ### Direct access to the Jetson nano
 
