@@ -40,6 +40,8 @@ The trames definition with all fields is [here](protobuf/telemetry.proto)
 
 # Getting started
 
+## With the standard Vitirover web interface
+
  - Get a Vitirover robot through us or our distributors
 
  - Get a [Vitirover Cloud account](https://cloud.vitirover.eu) connected to this robot by first creating you account and contacting us to add the robot to your account
@@ -56,6 +58,30 @@ The trames definition with all fields is [here](protobuf/telemetry.proto)
 
  - Please consult the Vitirover help section for using the standard robot functions ❓
 
+## With the Jetson Nano included in the Academic robot
+
+### Using SSH and a local network
+
+The **VitiroverAP_[name of your robot]** network is intended for private use since is emitted by our non-academic motherboard.
+
+Starting at this commit, we include a **vitirover-wifi-manager** to help you getting remote access without the need to open the robot (see next section).
+The Jetson Nano, with the Wifi card we added, only supports one wifi connection at the time. But to be able to use this connection confortably, you will need to have an SSH connection and an internet access on the Jetson Nano.
+In order to accomplish this, the solution is to connect the Jetson Nano directly to your local wifi network, and get SSH access from your computer thought your local wifi network.
+
+The "vitirover-wifi-manager" emits a hotspot network, **Vitirover-SSH**. Thought this network, you will configure the **local network** you want to use. Once this is done, you apply this configuration, SSH will cut, and you will be able to access SSH again thought your local-network.
+
+Here are the steps
+
+### Direct access to the Jetson nano
+
+If you struggle with the setup of the SSH connection and remote access, you can always connect directly on the jetson nano by : 
+ - removing the ten screws with a M5 Allen Key (found on bike repair kits for example). Pay attention to not pull cables (GNSS antenna and power cable). It is practical to keep the upper hull on top, but turn it to access the Jetson Nano.
+ - checking that the robot is on (button is up) and leds on the Jetson Nano are on
+ - Connecting a computer screen via a Jetson HDMI port
+ - Connecting a USB mouse, a keyboard to the Jetson
+ - Log in : The default user and password is __vitirover__.****
+ - This repository, and the [ROS repository](https://github.com/vitirover/vitirover_ws) are already present. If they are not up to date, you can do a **git pull** on them. 
+ - In order to start, you can for example test python example scripts in examples, or head directly into the[ROS repository](https://github.com/vitirover/vitirover_ws)
 
 # Python example scripts
 
