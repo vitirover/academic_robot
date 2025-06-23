@@ -105,7 +105,7 @@ If you struggle with the setup of the SSH connection and remote access, you can 
  - Connecting a USB mouse, a keyboard to the Jetson
  - Log in : The default user and password is __vitirover__.****
  - This repository, and the [ROS repository](https://github.com/vitirover/vitirover_ws) are already present. If they are not up to date, you can do a **git pull** on them. 
- - In order to start, you can for example test python example scripts in examples, or head directly into the[ROS repository](https://github.com/vitirover/vitirover_ws)
+ - In order to start, you can for example test python example scripts in examples, or head directly into the [ROS repository](https://github.com/vitirover/vitirover_ws)
 
 ### Network Schema
 **Coming soon**
